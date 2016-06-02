@@ -1,0 +1,143 @@
+// dropdown-select styles
+
+// global vars
+
+// component vars
+$itemVerticalPadding: 10px;
+$itemHorizontalPadding: 16px;
+$highlight: #2c3e50;
+$componentBorderColor: #bdc3c7;
+
+
+.dropdown-select {
+  position: relative;
+}
+
+.dropdown-select.open {
+  z-index: 2;
+}
+
+.dropdown-select ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-title { 
+  padding: 8px ($itemHorizontalPadding + 30) 8px $itemHorizontalPadding;
+  display: block;
+  color: $bodyColor;
+  border: 1px solid $componentBorderColor;
+  position: relative;
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:after {
+    content: "";
+    background: url(/assets/images/icon-menu-caret-down.png) 0 0 no-repeat;
+    width: 17px;
+    height: 9px;
+    position: absolute;
+    right: 10px;
+    top: 14px;
+  }
+}
+
+.dropdown-title.has-selection {
+  padding-left: $itemHorizontalPadding + 20;
+}
+
+.dropdown-title.has-selection span {
+  background: url(/assets/images/icon-cross.png) 0 0 no-repeat;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  display: block;
+}
+
+.dropdown-select.open .dropdown-title{
+  color: $highlight;
+}
+
+.select-menu {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+  position: relative;
+  min-width: 225px;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 2px 1px 8px  #a3b1b2;
+}
+
+.open > .select-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.dropdown-select li {
+  background: #fff;
+}
+
+.dropdown-select li a {
+  padding: $itemVerticalPadding $itemHorizontalPadding;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+  position: relative;
+  border-top: 1px solid $componentBorderColor;
+  border-bottom: 1px solid transparent;
+  border-left: 1px solid $componentBorderColor;
+  border-right: 1px solid $componentBorderColor;
+}
+
+.dropdown-select li.active > a:hover,
+.dropdown-select li:last-child a:hover,
+.dropdown-select li a:hover {
+  color: $highlight;
+  border-top: 1px solid $highlight;
+  border-left: 1px solid $highlight;
+  border-right: 1px solid $highlight;
+  border-bottom: 1px solid $highlight;
+}
+
+.dropdown-select .select-menu .select-menu li.active > a,
+.dropdown-select .open > a {
+  color: $highlight;
+  border-left: 1px solid $highlight;
+  border-bottom: 1px solid $componentBorderColor;
+}
+
+// .dropdown-select li:hover.active + li > a,
+.dropdown-select li:last-child > a {
+  border-bottom: 1px solid $componentBorderColor;
+}
+
+.dropdown-select li:hover + li > a {
+  border-top: 1px solid transparent;
+}
+
+.select-menu .select-menu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  z-index: 1;
+}
+
+.select-menu .select-menu li:first-child {
+  padding: $itemVerticalPadding $itemHorizontalPadding ($itemVerticalPadding + 1);
+  border-top: 1px solid $componentBorderColor;
+  border-left: 1px solid $componentBorderColor;
+  border-right: 1px solid $componentBorderColor;
+}
+
+.select-menu .select-menu li:first-child:hover + li a {
+  border-top: 1px solid $componentBorderColor;
+}

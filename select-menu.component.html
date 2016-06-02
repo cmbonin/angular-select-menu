@@ -1,0 +1,24 @@
+<div class="{{componentClass}}">
+    <a href="#" (click)="toggleMenu()" class="dropdown-title" [ngClass]="{'has-selection':selectionTitle}">
+        <span *ngIf="selectionTitle" (click)="resetSelection($event)"></span>
+        {{selectionTitle||dropdowntitle}} 
+    </a>
+
+    <ul  *ngIf="isMulti" class="select-menu multi-level">
+        <li><a href="#" (click)="onSelect($event, '')">{{dropdowntitle}}</a></li>
+        <li  *ngFor="#item1 of data | objectIterable" class="select-menu-parent">
+            <a href="#" (mouseover)="subMenuToggle($event)">{{item1.key}}</a>
+            <ul class="select-menu">
+                <li>See all {{item1.key}}</li>
+                <li *ngFor="#item2 of item1.val"><a (click)= "onSelect($event, item2)">{{item2}}</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <ul *ngIf="!isMulti" class="select-menu single-level">
+        <li><a href="#" (click)="onSelect($event, '')">{{dropdowntitle}}</a></li>
+        <li  *ngFor="#item1 of data" class="select-menu-parent">
+            <a href="#" (click)="onSelect($event, item1)">{{item1}}</a>
+        </li>
+    </ul>
+</div>
